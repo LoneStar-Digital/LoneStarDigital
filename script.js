@@ -59,14 +59,14 @@ function initLightbox() {
             lightboxCaption.textContent = overlayText ? overlayText.textContent : '';
 
             lightbox.classList.add('show');
-            document.body.style.overflow = 'hidden'; // Block background jumping/scrolling
+            document.body.style.overflow = 'hidden'; 
         });
     });
 
     // Close Lightbox Handler
     const closeLightbox = () => {
         lightbox.classList.remove('show');
-        document.body.style.overflow = ''; // Restore structural scrolling
+        document.body.style.overflow = ''; 
     };
 
     // Close Click Events
