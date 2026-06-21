@@ -7,17 +7,19 @@ menuBtn.addEventListener('click', () => {
     menuBtn.innerText = mobileMenu.classList.contains('open') ? '✕' : '☰';
 });
 
-// 2. Mail Delivery Pipeline Interceptor
+// 2. Mail Delivery Pipeline Interceptor (Updated with Dynamic Tier Subject Injection)
 const form = document.getElementById('contactForm');
 if (form) {
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
+        const tier = document.getElementById('tier').value;
         const msg = document.getElementById('msg').value;
 
-        const subject = encodeURIComponent(`New Project Proposal from ${name}`);
-        const body = encodeURIComponent(`Client Identity: ${name}\nReturn Route: ${email}\n\nProject Scope Specifications:\n${msg}`);
+        // Injected tier selection parameters straight into the Title string syntax
+        const subject = encodeURIComponent(`New Project Proposal [${tier}] from ${name}`);
+        const body = encodeURIComponent(`Client Identity: ${name}\nReturn Route: ${email}\nSelected Tier Configuration: ${tier}\n\nProject Scope Specifications:\n${msg}`);
 
         window.location.href = `mailto:lonestardigital@outlook.com?subject=${subject}&body=${body}`;
     });
