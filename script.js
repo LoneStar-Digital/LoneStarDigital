@@ -26,22 +26,65 @@ if (form) {
 // 3. Compact One-Frame Gradient Cross-Fade Controller
 function runSlideshow() {
     const slides = document.querySelectorAll('.hero-slideshow-container .slide');
-    if (slides.length === 0) return; // Safely escape if not on the homepage
+    if (slides.length === 0) return; 
 
     let currentIdx = 0;
-    const speed = 4500; // Lingers on each photo for 4.5 seconds before smoothly cross-fading
+    const speed = 4500; 
 
     setInterval(() => {
-        // Fade out current slide layer
         slides[currentIdx].classList.remove('active');
-
-        // Increment index pointer and loop back to 0 at the end
         currentIdx = (currentIdx + 1) % slides.length;
-
-        // Fade in new slide layer smoothly over the old one
         slides[currentIdx].classList.add('active');
     }, speed);
 }
 
-// Run engine when layout drawing completes
-document.addEventListener('DOMContentLoaded', runSlideshow);
+// 4. Portfolio Lightbox Maximizer (Clean Glide & Mobile Guard)
+function initLightbox() {
+    const portItems = document.querySelectorAll('.port-item');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const closeBtn = document.querySelector('.lightbox-close');
+
+    if (!lightbox || portItems.length === 0) return;
+
+    // Open Lightbox
+    portItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const img = item.querySelector('img');
+            const overlayText = item.querySelector('.port-overlay span');
+
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightboxCaption.textContent = overlayText ? overlayText.textContent : '';
+
+            lightbox.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Block background jumping/scrolling
+        });
+    });
+
+    // Close Lightbox Handler
+    const closeLightbox = () => {
+        lightbox.classList.remove('show');
+        document.body.style.overflow = ''; // Restore structural scrolling
+    };
+
+    // Close Click Events
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    // Close via Hardware Keyboard Escape Track
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('show')) {
+            closeLightbox();
+        }
+    });
+}
+
+// Run engines when layout drawing completes
+document.addEventListener('DOMContentLoaded', () => {
+    runSlideshow();
+    initLightbox();
+});
