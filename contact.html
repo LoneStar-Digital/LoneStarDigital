@@ -52,9 +52,20 @@
                     <label style="display: block; font-weight: 700; font-size: 0.9rem; margin-bottom: 0.5rem;">Email Address</label>
                     <input type="email" id="email" required style="width: 100%; padding: 1rem; border-radius: 12px; border: 1px solid #CBD5E1; font-family: inherit; font-size: 1rem;">
                 </div>
+                
                 <div>
-                    <label style="display: block; font-weight: 700; font-size: 0.9rem; margin-bottom: 0.5rem;">Project Scope & Tier</label>
-                    <textarea id="msg" rows="4" placeholder="e.g. I run a local business. I am looking to get set up with the $400 Professional Tier website..." required style="width: 100%; padding: 1rem; border-radius: 12px; border: 1px solid #CBD5E1; font-family: inherit; font-size: 1rem; resize: vertical;"></textarea>
+                    <label style="display: block; font-weight: 700; font-size: 0.9rem; margin-bottom: 0.5rem;">Project Tier</label>
+                    <select id="tier" required style="width: 100%; padding: 1rem; border-radius: 12px; border: 1px solid #CBD5E1; font-family: inherit; font-size: 1rem; background-color: white; color: #0F172A;">
+                        <option value="" disabled selected>Choose a package...</option>
+                        <option value="Starter Tier">Starter Package ($250)</option>
+                        <option value="Professional Tier">Professional Package ($400)</option>
+                        <option value="Enterprise Tier">Enterprise Package (Custom)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label style="display: block; font-weight: 700; font-size: 0.9rem; margin-bottom: 0.5rem;">Project Scope & Details</label>
+                    <textarea id="msg" rows="4" placeholder="e.g. Tell us a bit about your goals, features you need, or your business layout..." required style="width: 100%; padding: 1rem; border-radius: 12px; border: 1px solid #CBD5E1; font-family: inherit; font-size: 1rem; resize: vertical;"></textarea>
                 </div>
                 <button type="submit" class="nav-cta" style="border: none; cursor: pointer; padding: 1.2rem; font-size: 1.1rem; width: 100%;">Submit Details</button>
             </form>
